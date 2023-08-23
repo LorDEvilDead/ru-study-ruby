@@ -8,6 +8,7 @@ module Exercise
           max = num if num > max
         end
         max
+        end
       end
 
       def replace(array)
