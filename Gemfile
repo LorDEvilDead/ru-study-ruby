@@ -14,3 +14,4 @@ gem 'rubocop', require: false
 gem 'rubocop-minitest', require: false
 gem 'rubocop-rake', require: false
 gem 'test-unit'
+gem 'byebug'
