@@ -14,12 +14,12 @@ module Exercise
       end
 
       def chars_count(_films, _threshold)
-        films_average = _array.map do |film_two_countries|
+        films_average = _films.map do |film_two_countries|
         if film_two_countries["rating_kinopoisk"].to_f >= _threshold
           film_two_countries["name"]
+          end
         end
-        films_average.compact!
-        
+        films_average.compact!.join.count 'и'
       end
     end
   end
