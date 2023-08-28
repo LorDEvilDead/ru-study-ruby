@@ -5,9 +5,25 @@ module Exercise
       # Использовать свои написанные функции для реализации следующих - можно.
 
       # Написать свою функцию my_each
-      def my_each
-      
+    
+      def my_each (&block)
+        if MyArray.any? && block.persisted
+          block.call
+        else   
+          return @MyArray
+        end
       end
+      # 1. нужно условие если есть блок сделай одно, если нет - другое
+      # 2. массив может быть? (заполнинный и?)
+      # 3. block.call(x)      
+      end
+
+      [1,2,3,4]
+       0 1 2 3
+      a.my_each do |x| 
+        puts x * 2
+      end
+
 
       # Написать свою функцию my_map
       def my_map
