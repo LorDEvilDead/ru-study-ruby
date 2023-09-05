@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '3.0.2'
 
+gem 'byebug'
 gem 'coveralls', require: false
 gem 'factory_girl'
 gem 'minitest'
@@ -14,4 +15,3 @@ gem 'rubocop', require: false
 gem 'rubocop-minitest', require: false
 gem 'rubocop-rake', require: false
 gem 'test-unit'
-gem 'byebug'
