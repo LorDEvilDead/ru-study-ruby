@@ -6,17 +6,40 @@ module Exercise
 
       # Написать свою функцию my_each
     
-      def my_each 
-        if block_given?
-          arr = []
-          for element in arr do
-            block.call
-            else
-              <Enumerator:... :my_each>
-            end
-          end
-        end  
+      # def my_each(&block)
+      #   if block_given?
+      #     for element in self do
+      #       block.call
+      #     end
+      #     else
+      #       self.to_enum
+      #     end
+      #   end  
+      # end
+      
+      # def my_each(&block)
+      #   if block_given?
+      #     if self.empty?
+      #       return self
+      #     else 
+      #       a = yield self[0]
+      #       self.class.new.drop(1).my_each(&block)
+      #     end
+      #     self
+      #     else
+      #       self.to_enum
+      #   end
+      # end
+
+      def my_each(&block)
+        return self.to_enum unless self.block_given?
+        return self if self.size.zero?
+        block.call(self.first)
+        MyArray.new(self[1..]).my_each(&block)
+        self
       end
+
+
       # 1. нужно условие если есть блок сделай одно, если нет - другое
       # 2. массив может быть? (заполнинный и?)
       # 3. block.call(x) 
