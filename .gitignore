@@ -8,4 +8,8 @@
 /spec/reports/
 /tmp/
 /log/
+<<<<<<< HEAD
 /.byebug_history
+=======
+.byebug_history
+>>>>>>> 1f1e41a (i will return to this)

@@ -2,6 +2,7 @@ require 'pry'
 module Exercise
   module Arrays
     class << self
+<<<<<<< HEAD
       def my_max(arr)
         max = arr[0]
         arr.each do |num|
@@ -21,6 +22,18 @@ module Exercise
         return mid if array[mid] == query
 
         query < array[mid] ? search(array, query, low, mid - 1) : search(array, query, mid + 1, high)
+=======
+      def replace(array)
+        array_max = array.max
+        array.map { |array_element| array_element.positive? ? array_max : array_element }
+      end
+
+      def search(array, query)
+        array.each do |index_array|
+          return array.index(index_array) if index_array == query
+        end
+        -1
+>>>>>>> 1f1e41a (i will return to this)
       end
     end
   end
