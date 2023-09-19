@@ -1,3 +1,4 @@
+require 'pry'
 module Exercise
   module Arrays
     class << self
@@ -14,16 +15,12 @@ module Exercise
       end
 
       def search(array, query, low = 0, high = array.length - 1)
-        return -1 if low > high
+        return -1 if low > high || query < array[low] || query > array[high]
 
         mid = (low + high) / 2
-        if query < array[mid]
-          search(array, query, low, mid - 1)
-        elsif query > array[mid]
-          search(array, query, mid + 1, high)
-        else
-          mid
-        end
+        return mid if array[mid] == query
+
+        query < array[mid] ? search(array, query, low, mid - 1) : search(array, query, mid + 1, high)
       end
     end
   end
