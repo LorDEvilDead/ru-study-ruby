@@ -1,3 +1,4 @@
+require "pry"
 module Exercise
   module Fp2
     class MyArray < Array
@@ -61,12 +62,13 @@ module Exercise
 
       # Написать свою функцию my_reduce
       def my_reduce(accum = nil, &block)
-        return to_enum unless self.block_given?
-        return self if size.zero?
-
-        block.call(accum)
-        MyArray.new(self[1..]).my_reduce(&block)
-        accum
+        return accum if self.length == 0
+        if accum == nil 
+          accum = self[0]
+        else
+          accum = yield(accum, self[0])
+        end
+        MyArray.new(self[1..]).my_reduce(accum, &block)
       end
     end
   end
@@ -74,3 +76,6 @@ end
 # 1. проверяем есть ли блок, если нет - то вызываем ексепшн
 # 2. проверяем пустой ли массив - если да - возвращаем значение аккумулятора
 # если и аккумулятор пустой - возвращаем нил
+
+# 2. с блоком и без определения аккумулятора
+# 3. И блок с определением аккумулятора
