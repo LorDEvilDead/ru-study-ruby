@@ -6,32 +6,6 @@ module Exercise
       # Использовать свои написанные функции для реализации следующих - можно.
 
       # Написать свою функцию my_each
-
-      # def my_each(&block)
-      #   if block_given?
-      #     for element in self do
-      #       block.call
-      #     end
-      #     else
-      #       self.to_enum
-      #     end
-      #   end
-      # end
-
-      # def my_each(&block)
-      #   if block_given?
-      #     if self.empty?
-      #       return self
-      #     else
-      #       a = yield self[0]
-      #       self.class.new.drop(1).my_each(&block)
-      #     end
-      #     self
-      #     else
-      #       self.to_enum
-      #   end
-      # end
-
       def my_each(&block)
         return to_enum unless self.block_given?
         return self if size.zero?
@@ -41,18 +15,15 @@ module Exercise
         self
       end
 
-      # 1. нужно условие если есть блок сделай одно, если нет - другое
-      # 2. массив может быть? (заполнинный и?)
-      # 3. block.call(x)
-      # [1,2,3,4]
-      #  0 1 2 3
-      # a.my_each do |x|
-      #   puts x * 2
-      # end
 
       # Написать свою функцию my_map
-      def my_map
-        0
+      def my_map( collection, &block)
+        return to_enum unless self.block_given?
+        return self if size.zero?
+        collection.reduce([]) do 
+        |result, element|
+        result <<
+        block.call(element)
       end
 
       # Написать свою функцию my_compact
@@ -62,20 +33,21 @@ module Exercise
 
       # Написать свою функцию my_reduce
       def my_reduce(accum = nil, &block)
-        return accum if self.length == 0
-        if accum == nil 
-          accum = self[0]
-        else
-          accum = yield(accum, self[0])
-        end
+        return accum if self.empty?
+        
+        accum == nil ? accum = self[0] : accum = yield(accum, self[0])
+  
         MyArray.new(self[1..]).my_reduce(accum, &block)
-      end
+      end  
+      #Я как действующий тестировщик, подошёл сразу к создаию этого метода не совсем корректно
+      #Я начал смотреть сразу кейсы, которые могут вызывать ошибки в работе метода или кейсы, которые могут привести к некорректной работе, чтобы их ограничить
+      #в следствии нашёл один кейс, который хотел реализовать - но остановился, в следствии чего появился вопрос:
+      #такие кейсы были обнаружены: 
+      # [].reduce  [].reduce() [].reduce(){}  => nil   
+      # [].reduce(1) => error
+      # [1,2,3].reduce(1)(без акума и с пустым акумом) => error 
+      # [].reduce(1){} => 1 почему в этом кейсе 1, а на пару строк выше эрор, а в первой строке нил?
+      # [1,2,3].reduce(1){} => И почему тут тоже 1?
     end
   end
 end
-# 1. проверяем есть ли блок, если нет - то вызываем ексепшн
-# 2. проверяем пустой ли массив - если да - возвращаем значение аккумулятора
-# если и аккумулятор пустой - возвращаем нил
-
-# 2. с блоком и без определения аккумулятора
-# 3. И блок с определением аккумулятора
