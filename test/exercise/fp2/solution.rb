@@ -26,13 +26,12 @@ module Exercise
 
       # Написать свою функцию my_compact
       def my_compact
-        arr = MyArray.new
-        my_reduce(arr) do |accum, element|
+        my_reduce(MyArray.new) do |accum, element|
           accum << element unless element.nil?
-          arr
+          accum
         end
-        arr
       end
+
 
       # Написать свою функцию my_reduce
       def my_reduce(accum = nil, &block)
