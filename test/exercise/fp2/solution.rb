@@ -19,8 +19,7 @@ module Exercise
       def my_map
         return to_enum unless block_given?
 
-        arr = MyArray.new
-        my_reduce(arr) { |accum, element| accum << yield(element) }
+        my_reduce(MyArray.new) { |accum, element| accum << yield(element) }
         arr
       end
 
