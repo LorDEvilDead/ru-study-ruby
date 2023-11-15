@@ -1,4 +1,3 @@
-require 'pry'
 module Exercise
   module Fp
     class << self

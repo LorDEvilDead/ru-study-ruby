@@ -1,4 +1,3 @@
-require 'pry'
 module Exercise
   module Fp2
     class MyArray < Array
@@ -20,7 +19,7 @@ module Exercise
         return to_enum unless block_given?
 
         my_reduce(MyArray.new) { |accum, element| accum << yield(element) }
-        arr
+        accum
       end
 
       # Написать свою функцию my_compact
